@@ -1,7 +1,7 @@
 % Inefficient script for extracting data - good enough for functionality
-[readings, readingtimes] = extracteit("RawData/HomogenRepeats");
-[positions, positiontimes] = extractprinter("RawData/HomogenProbingrepeats");
-homogenrepeats = combinedata(readings, readingtimes, positions, positiontimes);
+[readings, readingtimes] = extracteit("RawData/RadialRepeats");
+[positions, positiontimes] = extractprinter("RawData/RadialProbingrepeats");
+radialrepeats = combinedata(readings, readingtimes, positions, positiontimes);
 
 
 % Extract data from EIT board

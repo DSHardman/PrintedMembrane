@@ -9,7 +9,7 @@ targetforce = 0.3  # In N
 retractheight = 15
 step = 0.05
 waittime = 5
-savestring = "RadialProbing"
+savestring = "RawData/PartRadialProbing"
 
 Ender = serial.Serial("COM10", 115200)
 Forces = serial.Serial("COM9", 115200)

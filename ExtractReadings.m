@@ -1,7 +1,22 @@
 % Inefficient script for extracting data - good enough for functionality
-[readings, readingtimes] = extracteit("RawData/PartRadial");
-[positions, positiontimes] = extractprinter("RawData/PartRadialProbing1_0");
-partradial10 = combinedata(readings, readingtimes, positions, positiontimes);
+% [readings, readingtimes] = extracteit("RawData/GridFill");
+% [positions, positiontimes] = extractprinter("RawData/GridFillProbing0_3");
+
+[readings2, readingtimes2] = extracteit("RawData/GridFill2");
+readings = [readings; readings2];
+readingtimes = [readingtimes readingtimes2];
+
+[positions, positiontimes] = extractprinter("RawData/GridFillProbing0_5");
+gridfill05 = combinedata(readings, readingtimes, positions, positiontimes);
+
+[positions, positiontimes] = extractprinter("RawData/GridFillProbing0_7");
+gridfill07 = combinedata(readings, readingtimes, positions, positiontimes);
+
+[positions, positiontimes] = extractprinter("RawData/GridFillProbing1_0");
+gridfill10 = combinedata(readings, readingtimes, positions, positiontimes);
+
+[positions, positiontimes] = extractprinter("RawData/GridFillProbingrepeats");
+gridfillrepeats = combinedata(readings, readingtimes, positions, positiontimes);
 
 
 % Extract data from EIT board

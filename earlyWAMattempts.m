@@ -1,14 +1,14 @@
 %% Logistics: load in data
 load("Extracted/ExtractedRadials.mat");
-positions = radial07.positions;
-responses = radial07.cleanresponses();
+positions = radial03.positions;
+responses = radial03.cleanresponses();
 
 %% Localize using WAM: return average localization error on 10% test set
 error = wamtesting(1:size(responses,2), responses, positions, 0);
 fprintf("Localization Error on Test Set: %fmm\n", error);
 
 % Change final input to 1 to see prediction map & ground truth (red cross)
-wamtesting(1:size(responses,2), responses, positions, 1);
+% wamtesting(1:size(responses,2), responses, positions, 1);
 
 %% WAM implementation
 function error = wamtesting(combinations, responses, targetpositions, figs, traininds, testinds)
@@ -51,7 +51,7 @@ function error = wamtesting(combinations, responses, targetpositions, figs, trai
 
         error = error + rssq(prediction-testpositions(i,:));
 
-        % Plot error map
+        % Plot error map if final input is 1
         if figs
             vals = sum;
             interpolant = scatteredInterpolant(targetpositions(:,1), targetpositions(:,2), vals);

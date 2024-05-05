@@ -1,22 +1,8 @@
 % Inefficient script for extracting data - good enough for functionality
-% [readings, readingtimes] = extracteit("RawData/GridFill");
-% [positions, positiontimes] = extractprinter("RawData/GridFillProbing0_3");
-
-[readings2, readingtimes2] = extracteit("RawData/GridFill2");
-readings = [readings; readings2];
-readingtimes = [readingtimes readingtimes2];
-
-[positions, positiontimes] = extractprinter("RawData/GridFillProbing0_5");
-gridfill05 = combinedata(readings, readingtimes, positions, positiontimes);
-
-[positions, positiontimes] = extractprinter("RawData/GridFillProbing0_7");
-gridfill07 = combinedata(readings, readingtimes, positions, positiontimes);
-
-[positions, positiontimes] = extractprinter("RawData/GridFillProbing1_0");
-gridfill10 = combinedata(readings, readingtimes, positions, positiontimes);
-
-[positions, positiontimes] = extractprinter("RawData/GridFillProbingrepeats");
-gridfillrepeats = combinedata(readings, readingtimes, positions, positiontimes);
+% [readings, readingtimes] = extracteit("RawData/Radial_membrane2");
+% [positions, positiontimes] = extractprinter("RawData/Radial20_3");
+[positions, positiontimes] = extractprinter("RawData/Radial2random");
+RadialRandom = combinedata(readings, readingtimes, positions, positiontimes);
 
 
 % Extract data from EIT board
@@ -41,13 +27,16 @@ function [positions, positiontimes] = extractprinter(filename)
     lines = readlines(filename);
     lines = lines(1:end-1);
     
-    positions = zeros([length(lines), 2]);
+%     positions = zeros([length(lines), 2]);
+    positions = zeros([length(lines), 3]);
     positiontimes(length(lines), 3) = datetime();
     
     for i = 1:length(lines)
         items = split(char(lines(i)), ", ");
-        positions(i, :) = [str2double(items{1, 1}) str2double(items{2, 1})];
-        positiontimes(i, :) = [datetime(items{3, 1}) datetime(items{4, 1}) datetime(items{5, 1})];
+%         positions(i, :) = [str2double(items{1, 1}) str2double(items{2, 1})];
+        positions(i, :) = [str2double(items{1, 1}) str2double(items{2, 1}) str2double(items{3, 1})];
+%         positiontimes(i, :) = [datetime(items{3, 1}) datetime(items{4, 1}) datetime(items{5, 1})];
+        positiontimes(i, :) = [datetime(items{4, 1}) datetime(items{5, 1}) datetime(items{6, 1})];
     end
 end
 
